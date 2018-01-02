@@ -14,7 +14,7 @@ async function generateAcfunIdsToRedis(min, max) {
     await redis.sadd(ACFUN_ID_SET_REDIS_KEY, arr);
   }
   const t2 = Date.now().valueOf();
-  console.log(t2-t1);
+  console.log(t2 - t1);
 }
 
 async function getRandomAcfunIds(count) {
@@ -32,7 +32,7 @@ async function idBackInPool(id) {
 
 async function getRemainingIDCount() {
   return await redis.scard(ACFUN_ID_SET_REDIS_KEY)
-    .then(r=>Number(r));
+    .then(r => Number(r));
 }
 
 module.exports = {

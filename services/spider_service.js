@@ -1,7 +1,7 @@
 require('./mongoose_service');
 const axios = require('axios');
 const cherrio = require('cheerio');
-const RedisService = require('./redis_service');
+const RedisService = require('./content_id_service');
 const moment = require('moment');
 const jieba = require('nodejieba');
 
@@ -21,11 +21,11 @@ async function spideringArticles(count) {
   let errCount = 0;
   for (let id of ids) {
     await getSingleArticle(id)
-      .then(e => {
-        succeedCount++;
+      .then((e) => {
+        succeedCount += 1;
       })
       .catch(e => {
-        errCount++;
+        errCount += 1;
         if (e.errorCode !== 4040000) throw e;
       });
     await new Promise((rsv) => {
